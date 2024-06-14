@@ -20,14 +20,40 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            consumerProguardFiles("consumer-rules.pro")  // Add consumer-rules.pro
         }
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))  // Set Java toolchain to use version 17
+    }
+    sourceCompatibility = JavaVersion.VERSION_17  // Ensure source compatibility with Java 17
+    targetCompatibility = JavaVersion.VERSION_17  // Ensure target compatibility with Java 17
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.vikassinghgit25"
+            artifactId = "AudioPurifierSDK"
+            version = "2.0"
+            pom {
+                description.set("This library is for audio filter")
+            }
+        }
+    }
+    repositories {
+        mavenLocal()  // Publish to local Maven repository
+    }
+}
+
 
 dependencies {
     implementation(libs.appcompat)
