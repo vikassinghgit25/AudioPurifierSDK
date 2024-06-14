@@ -61,6 +61,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation("com.arthenica:mobile-ffmpeg-full:4.4")
+    api("com.arthenica:mobile-ffmpeg-full:4.4")
 }
 
